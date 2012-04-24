@@ -4,7 +4,7 @@
  * A small jQuery plugin to transform a hyperlink into an iframe with src
  * attribute equivalent to the original link's href attribute.
  *
- * @version 1.0
+ * @version 1.1
  * @author Christopher Torgalson <manager@bedlamhotel.com>
  * @param object overrides Configuration options:
  *
@@ -23,6 +23,7 @@
   $.fn.linkToIframe = function(overrides) {
     // Set default values:
     var defaults = {
+      css: {},
       height: 300,
       iframeHeading: $('<h2>iFrame</h2>'),
       iframeParent: $('<div/>'),
@@ -42,15 +43,12 @@
                 height: settings.height,
                 width: settings.width
               })
+              .css(settings.css)
               .appendTo(settings.iframeParent.append(settings.iframeHeading));
         // Replace the incoming link with the new iframe:
         $current.replaceWith(settings.iframeParent);
       }
     });
   };
-  
-  Drupal.behaviors.linkToIframe = function(context){
-    $('#iframetest').linkToIframe();
-  }
 })(jQuery);
 /* jquery.linkToIframe.js */
